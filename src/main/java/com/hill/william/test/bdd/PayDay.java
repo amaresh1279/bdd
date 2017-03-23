@@ -16,7 +16,7 @@ public class PayDay {
 		// this.day = 15;
 		SimpleDateFormat simpleDateformat = new SimpleDateFormat("EEEE");
 		int iYear = Calendar.getInstance().get(Calendar.YEAR);
-		int iMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		int iMonth = Calendar.getInstance().get(Calendar.MONTH) + 3;
 		int iDay = Calendar.getInstance().getActualMaximum(Calendar.DAY_OF_MONTH);
 		String yourDate = iDay + "/" + iMonth + "/" + iYear;
 		// String string = yourDate;

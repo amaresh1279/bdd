@@ -29,5 +29,9 @@ public class BonusCalculation {
 	public String get15thDay() {
 		return calculatedDay;
 	}
+	
+	public String calculateHoliday(){
+		return "holiday";
+	}
 
 }

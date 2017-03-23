@@ -1,5 +1,4 @@
 #Author: Amaresh
-
 @tag
 Feature: Monthly bonus
   As a payroll accountant
@@ -26,7 +25,6 @@ Feature: Monthly bonus
       | "Saturday" | "Sunday"   |
       | "Sunday"   | "Saturday" |
 
-  @ignore
   Scenario Outline: The 15th of the month is a weekend And first Wednesday is holiday
     When the 15th of the month is <day1> OR <day2> And <day3>
     Then bonus need to be paid on first Thursday after 15th
@@ -50,7 +48,7 @@ Feature: Monthly bonus
 
   Scenario Outline: Last day of the month is a weekend
     When the last day of the month is <day1> OR <day2>
-Then base salary need to be paid on last day before the weekend
+    Then base salary need to be paid on last day before the weekend
 
     Examples: 
       | day1       | day2       |

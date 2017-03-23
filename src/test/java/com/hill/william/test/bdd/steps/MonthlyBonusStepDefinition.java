@@ -23,10 +23,8 @@ public class MonthlyBonusStepDefinition {
 	}
 
 	@When("^the 15th of the month is \"([^\"]*)\"$")
-	public void the_15_of_the_month_is_Weekday(String week_day) throws Throwable {
-		System.out.println("15th of the month is : " + week_day);
-		String bonusDay = bonusCalculation.calculateDay(week_day);
-		System.out.println("Calculated Day :: " + bonusDay);
+	public void the_15_of_the_month_is_Weekday(String week_day) throws Throwable {		
+		String bonusDay = bonusCalculation.calculateDay(week_day);		
 		if (week_day.equalsIgnoreCase(bonusDay)) {
 			bonusGiven = true;
 		} else {
@@ -48,7 +46,7 @@ public class MonthlyBonusStepDefinition {
 	public void the_15_of_the_month_is_OR(String arg2, String arg3) throws Throwable {
 		String bonusDay = bonusCalculation.calculateDay(arg2);
 
-		System.out.println("Calculated Day :: " + bonusDay);
+		
 		if (arg2.equalsIgnoreCase(bonusDay) || arg3.equalsIgnoreCase(bonusDay)) {
 			bonusGiven = true;
 		} else {
@@ -67,9 +65,9 @@ public class MonthlyBonusStepDefinition {
 
 	@When("^the last day of the month is \"([^\"]*)\"$")
 	public void the_last_day_of_the_month_is(String last_day_of_month) throws Throwable {
-		System.out.println("Last day of month is : " + last_day_of_month);
+		
 		String payingDay = payDay.calculatePayDay(last_day_of_month);
-		System.out.println("Pay Day :: " + payingDay);
+		
 		if (last_day_of_month.equalsIgnoreCase(payingDay)) {
 			basePayGiven = true;
 		} else {
@@ -89,7 +87,7 @@ public class MonthlyBonusStepDefinition {
 	@When("^the last day of the month is \"([^\"]*)\" OR \"([^\"]*)\"$")
 	public void the_last_day_of_the_month_is_weekend(String arg1, String arg2) throws Throwable {
 		String payingDay = payDay.calculatePayDay(arg1);
-
+		
 		if (arg1.equalsIgnoreCase(payingDay) || arg2.equalsIgnoreCase(payingDay)) {
 			basePayGiven = true;
 		} else {
@@ -105,4 +103,33 @@ public class MonthlyBonusStepDefinition {
 			throw new Exception("Test Failed");
 		}
 	}
+	
+	
+	@When("^the 15th of the month is \"([^\"]*)\" OR \"([^\"]*)\" And \"([^\"]*)\"$")
+	public void the_15th_of_the_month_is_OR_And(String arg1, String arg2, String arg3) throws Throwable {
+		String bonusDay = bonusCalculation.calculateDay(arg2);
+		
+		String holiday = bonusCalculation.calculateHoliday();
+
+		
+		if (arg2.equalsIgnoreCase(bonusDay) || arg3.equalsIgnoreCase(bonusDay) && arg3.equalsIgnoreCase(holiday)) {
+			bonusGiven = true;
+		} else {
+			bonusGiven = false;
+		}
+	}
+
+	@Then("^bonus need to be paid on first Thursday after (\\d+)th$")
+	public void bonus_need_to_be_paid_on_first_Thursday_after_th(int arg1) throws Throwable {
+		if (bonusGiven) {
+			System.out.println("Bonus need to be paid on first Thursday after 15th");
+		} else {
+			throw new Exception("Test Failed");
+		}
+	}
+	
+	
+	
+	
+	
 }
